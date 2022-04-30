@@ -49,6 +49,7 @@ RUN apt-get update && apt-get install -y \
     pip3 install ansible && \
     pip3 install jmespath && \
     pip3 install openshift==${OPENSHIFT_VERSION} && \
+    pip3 install kubernetes==12.0.0 && \
     apt-get clean && \
     ln -s /usr/bin/python3 /usr/bin/python && \
     rm -rf /var/lib/apt/lists/*
