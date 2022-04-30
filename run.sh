@@ -22,3 +22,4 @@ pip3 install kubernetes==12.0.0
 
 echo "Running the playbook..."
 exec ansible-playbook -vvvv /home/bevel/platforms/shared/configuration/site.yaml --inventory-file=/home/bevel/platforms/shared/inventory/ -e "@/home/bevel/build/network.yaml" -e 'ansible_python_interpreter=/usr/bin/python3'
+#exec ansible-playbook -vvvv /home/bevel/platforms/shared/configuration/site.yaml --inventory-file=/home/bevel/platforms/shared/inventory/ -e "@/home/bevel/build/network.yaml" -e 'ansible_python_interpreter=/usr/bin/python3' -e "reset=true"
