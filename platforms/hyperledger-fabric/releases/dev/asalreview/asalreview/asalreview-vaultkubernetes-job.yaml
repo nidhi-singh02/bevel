@@ -1,0 +1,33 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: asalreview-vaultkubenertes-job
+  namespace: asalreview-net
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: asalreview-vaultkubenertes-job
+  chart:
+    git: https://github.com/nidhi-singh02/bevel.git
+    ref: develop
+    path: platforms/hyperledger-fabric/charts/vault_kubernetes
+  values:
+    metadata:
+      name: asalreview
+      component_type: orderer
+      namespace: asalreview-net    
+      images:
+        alpineutils: ghcr.io/hyperledger/alpine-utils:1.0
+
+    vault:
+      reviewer_service: vault-reviewer
+      role: vault-role
+      address: http://127.0.0.1:8200
+      authpath: devasalreview-net-auth
+      policy: vault-crypto-orderer-asalreview-net-ro
+      secret_path: secretsv2
+      serviceaccountname: vault-auth
+      imagesecretname: regcred
+    
+    k8s:
+      kubernetes_url: https://192.168.49.2:8443
