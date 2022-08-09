@@ -88,12 +88,12 @@
       loop_var: organizationItem
 
   # This role generates the genesis.json and nodekey/enode for all orgs of the network
-  - name: "Generate crypto for the IBFT network"
+  - name: "Generate crypto for the IBFT/QBFT network"
     include_role:
       name: create/crypto/ibft
     vars:
       build_path: "{{ playbook_dir }}/build"
-    when: network.config.consensus == 'ibft'
+    when: network.config.consensus == 'ibft' or network.config.consensus == 'qbft'
 
   # This role generates the genesis.json and nodekey/enode for all orgs of the network
   - name: "Generate crypto for the CLIQUE network"
@@ -132,7 +132,7 @@
       values_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
     loop: "{{ network['organizations'] }}"
     when:
-    - network.config.consensus == 'ibft' or network.config.consensus == 'clique'
+    - network.config.consensus == 'ibft' or network.config.consensus == 'clique' or network.config.consensus == 'qbft'
     - item.type == 'validator'
 
   # This role generates the crypto materials for orion tm

@@ -112,7 +112,7 @@
   shell: |
     {{ bin_install_dir }}/besu/besu-{{ network.version }}/besu operator generate-blockchain-config --config-file={{ build_path }}/ibftConfigFile.json --to={{ build_path }}/crypto --private-key-file-name=key
   when: 
-    - network.config.consensus == "ibft" and generate_crypto is defined and generate_crypto == True
+    - (network.config.consensus == "ibft" or network.config.consensus == 'qbft') and generate_crypto is defined and generate_crypto == True
     - add_new_org is not defined or add_new_org|bool == False
 
 # This task get the list of folders

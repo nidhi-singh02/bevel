@@ -50,7 +50,7 @@
   loop: "{{ network['organizations'] }}"
   loop_control:
     loop_var: val
-  when: network.config.consensus == 'ibft' and val.type == 'validator' and peer | length>0
+  when: (network.config.consensus == 'ibft' or network.config.consensus == 'qbft') and val.type == 'validator' and peer | length>0
 
 # Check for local genesis file
 - name: Check that the gensis file exists
@@ -99,4 +99,4 @@
   loop: "{{ network['organizations'] }}"
   loop_control:
     loop_var: org_val
-  when: network.config.consensus == 'ibft' and org_val.type == 'validator' and peer_result | length>0
+  when: (network.config.consensus == 'ibft' or network.config.consensus == 'qbft)  and org_val.type == 'validator' and peer_result | length>0

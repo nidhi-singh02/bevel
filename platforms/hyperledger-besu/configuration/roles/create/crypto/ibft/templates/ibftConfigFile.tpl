@@ -4,7 +4,7 @@
      "chainId": 2018,
      "constantinoplefixblock": 0,
      "contractSizeLimit": 2147483647,
-     "ibft2": {
+     "qbft": {
        "blockperiodseconds": 2,
        "epochlength": 30000,
        "requesttimeoutseconds": 10
